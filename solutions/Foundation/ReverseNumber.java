@@ -44,4 +44,36 @@ public class ReverseNumber {
         }
         return result;
     }
+
+    public static int FindNthDigit(int n, int digitPosition) {
+        int length = Integer.toString(n).length();
+        int index = (digitPosition) % length;
+        return Integer.parseInt(Integer.toString(n).charAt(index) + "");
+    }
+
+    // another way to find the nth digit of a number -> using recursion
+    public static int FindNthDigitRecursion(int n, int index) {
+        if (index == 0) {
+            return n % 10;
+        }
+        return FindNthDigitRecursion(n / 10, index - 1);
+    }
+
+    // another way to find the nth digit of a number -> is using iteration
+    public static int FindNthDigitIteration(int n, int index) {
+        for (int i = 0; i < index; i++) {
+            n /= 10;
+        }
+        return n % 10;
+    }
+
+    public static void main(String[] args) {
+        int n = 12345;
+        System.out.println("Reversed number: " + reverse(n));
+        System.out.println("Digit sum: " + DigitSum(n));
+        System.out.println("Fast exponentiation (2^10): " + fastExponentiation(2, 10));
+        System.out.println("Find 3rd digit of " + n + ": " + FindNthDigit(n, 2));
+        System.out.println("Find 3rd digit of " + n + " using recursion: " + FindNthDigitRecursion(n, 2));
+        System.out.println("Find 3rd digit of " + n + " using iteration: " + FindNthDigitIteration(n, 2));
+    }
 }
